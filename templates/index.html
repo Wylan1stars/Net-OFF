@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de PC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9fafb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            max-width: 360px;
+            width: 100%;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #f9fafb;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        #vincular-btn {
+            background-color: #3b82f6;
+            color: white;
+        }
+        #vincular-btn:hover {
+            background-color: #2563eb;
+        }
+        #apagar-btn {
+            background-color: #ef4444;
+            color: white;
+        }
+        #apagar-btn:hover {
+            background-color: #dc2626;
+        }
+        #reiniciar-btn {
+            background-color: #10b981;
+            color: white;
+        }
+        #reiniciar-btn:hover {
+            background-color: #059669;
+        }
+        #message {
+            margin-top: 20px;
+            display: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        #message.success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        #message.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+        @media (max-width: 400px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.25rem;
+            }
+            button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Control de PC</h1>
+        <input type="text" id="codigo" placeholder="Código de vinculación" />
+        <button id="vincular-btn">Vincular Dispositivo</button>
+        <button id="apagar-btn">Apagar PC</button>
+        <button id="reiniciar-btn">Reiniciar PC</button>
+        <div id="message" class=""></div>
+    </div>
+
+    <script>
+        function showMessage(message, type) {
+            const messageBox = document.getElementById('message');
+            messageBox.textContent = message;
+            messageBox.className = type;
+            messageBox.style.display = 'block';
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3000);
+        }
+
+        document.getElementById('vincular-btn').addEventListener('click', function() {
+            const codigo = document.getElementById('codigo').value;
+            fetch('/vincular', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ codigo })
+            })
+            .then(response => response.json())
+            .then(data => showMessage(data.message, 'success'))
+            .catch(error => showMessage("Error: " + error, 'error'));
+        });
+
+        document.getElementById('apagar-btn').addEventListener('click', function() {
+            const codigo = document.getElementById('codigo').value;
+            fetch(`/apagar_pc?codigo=${codigo}`)
+            .then(response => response.json())
+            .then(data => showMessage(data.message, 'success'))
+            .catch(error => showMessage("Error: " + error, 'error'));
+        });
+
+        document.getElementById('reiniciar-btn').addEventListener('click', function() {
+            const codigo = document.getElementById('codigo').value;
+            fetch(`/reiniciar_pc?codigo=${codigo}`)
+            .then(response => response.json())
+            .then(data => showMessage(data.message, 'success'))
+            .catch(error => showMessage("Error: " + error, 'error'));
+        });
+    </script>
+</body>
+</html>
