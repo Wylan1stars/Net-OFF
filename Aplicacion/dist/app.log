@@ -1,0 +1,6 @@
+2024-10-26 21:52:14,722 - INFO - Hora de apagado obtenida: 21:52
+2024-10-26 21:52:14,722 - INFO - Esperando a que la hora actual sea: 21:52
+2024-10-26 21:52:14,722 - DEBUG - Hora actual: 21:52
+2024-10-26 21:52:14,722 - INFO - ¡Hora alcanzada! Apagando el equipo...
+2024-10-26 21:52:14,722 - INFO - Ejecutando comando de apagado...
+2024-10-26 21:52:14,753 - INFO - Comando de apagado ejecutado.

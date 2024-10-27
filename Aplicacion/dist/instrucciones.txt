@@ -1,0 +1,29 @@
+Instrucciones de Uso - NetOff
+
+	1. Instalación
+
+ El programa se instalará automáticamente en la carpeta:
+	C:\Program Files\NetOff
+ Al finalizar la instalación, NetOff se ejecutará y pedirá que ingreses la hora de apagado.
+
+	2. Configuración Inicial
+
+ Introduce la hora en formato 24 horas (HH) para definir cuándo deseas que el equipo se apague.
+		Ejemplo: 23:30 apagará el equipo a las 11:30 p.m.
+ El programa guardará esta configuración y comenzará a ejecutarse en segundo plano automáticamente.
+
+	3. Cambiar la Hora de Apagado
+
+ Si deseas cambiar la hora de apagado más adelante:
+ Busca en el menú Inicio la opción:
+ "Cambiar Hora de Apagado"
+ Ingresa la nueva hora de apagado y guarda los cambios.
+
+	4. Ejecución Automática
+
+ NetOff se ejecutará cada vez que inicies Windows y verificará si es la hora programada para apagar el equipo.
+
+	5. Desinstalación
+
+ Puedes desinstalar NetOff desde el Panel de Control o usando el acceso directo en el menú Inicio.
+ Al desinstalar, se eliminarán todos los archivos y configuraciones.
